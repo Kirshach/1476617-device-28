@@ -9,3 +9,6 @@
 node_modules/
 npm-debug.*
 Thumbs.db
+Catalog.png
+overflow-test-image.jpg
+prepros.config

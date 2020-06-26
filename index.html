@@ -2,65 +2,172 @@
 <html lang="ru">
   <head>
     <meta charset="utf-8">
+    <link href="css/normalize.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <title>HTML Academy: Девайс</title>
   </head>
   <body>
-    <header>
-      <a>DEVICE</a>
-      <ul>
+    <header class="main-header container">
+      <a class="header-logo transparent-on-hover">
+        <img src="img/logo-device.svg" height="35" width="163" alt="DEVICE">
+      </a>
+      <ul class="header-user-menu">
         <li>
-          <label for="search" class="visually-hidden">Поиск по сайту</label>
-          <input type="text" name="search" id="search" placeholder="Поиск по сайту">
+          <form action="https://echo.htmlacademy.ru/courses" method="get" class="header-search-form">
+            <label for="search" class="visually-hidden">Поиск по сайту</label>
+            <input type="text" name="search" id="search" class="header-search-input" placeholder="Поиск по сайту">
+            <button type="submit" class="header-search-submit"><span class="flickering-animation">Найти</span></button>
+          </form>
         </li>
         <li>
-          <a href="">Войти</a>
+          <a href="" class="header-usermenu-item header-login-item transparent-on-hover">
+            Войти
+          </a>
         </li>
         <li>
-          <a href="">Сравнить</a>
+          <a href="" class="header-usermenu-item header-compare-item transparent-on-hover">
+            Сравнить
+          </a>
         </li>
         <li>
-          <a href="">Корзина</a>
+          <a href="" class="header-usermenu-item header-basket-item transparent-on-hover">
+            Корзина
+          </a>
         </li>
       </ul>
       <nav class="main-nav">
         <ul>
           <li>
-            <a href="catalog.html">Каталог товаров</a>
+            <a href="catalog.html" class="main-nav-item main-nav-catalog transparent-on-hover">Каталог товаров</a>
+            <div class="catalog-dropdown-container">
+              <ul class="catalog-dropdown-menu">
+                <li>
+                  <a href="" class="transparent-on-hover">
+                    Виртуальная реальность
+                  </a>
+                </li>
+                <li>
+                  <a href="" class="transparent-on-hover">
+                    Моноподы для селфи
+                  </a>
+                </li>
+                <li>
+                  <a href="" class="transparent-on-hover">
+                    Экшн-камеры
+                  </a>
+                </li>
+                <li>
+                  <a href="" class="transparent-on-hover">
+                    Фитнес-браслеты
+                  </a>
+                </li>
+                <li>
+                  <a href="" class="transparent-on-hover">
+                    Умные часы
+                  </a>
+                </li>
+                <li class="catalog-drop-copter">
+                  <a href="" class="transparent-on-hover">
+                    Квадрокоптер
+                  </a>
+                </li>
+              </ul>
+            </div>
           </li>
           <li>
-            <a href="">Доставка</a>
+            <a href="" class="main-nav-item main-nav-delivery transparent-on-hover">Доставка</a>
           </li>
           <li>
-            <a href="">Гарантия</a>
+            <a href="" class="main-nav-item main-nav-warranty transparent-on-hover">Гарантия</a>
           </li>
           <li>
-            <a href="">Контакты</a>
+            <a href="" class="main-nav-item main-nav-contacts transparent-on-hover">Контакты</a>
           </li>
         </ul>
       </nav>
     </header>
-    <main>
+    <main class="index-main">
       <h1 class="visually-hidden">Магазин современной техники «Девайс»</h1>
-      <section>
+      <section class="promo-block container">
         <h2 class="visually-hidden">Популярные товары</h2>
-        <img src="img/longstick_promo.png" width="384" height="486" alt="Восьмиметровая селфи-палка">
-        <h3>Делай селфи, как Бен Стиллер!</h3>
-        <p>Самая длинная палка для селфи доступна в нашем магазине.<br>
-        Восемь (Восемь, Карл!) метров длиной и весом всего 5 килограмм</p>
-        <ul>
-          <li><a href="">Подробнее</a></li>
-          <li><button type="button">Товар №1</button></li>
-          <li><button type="button">Товар №2</button></li>
-          <li><button type="button">Товар №3</button></li>
-        </ul>
-        <dl>
-          <dt>8,5 м</dt>
-          <dd>Длина палки</dd>
-          <dt>5 кг</dt>
-          <dd>Вес палки</dd>
-          <dt>Карбон</dt>
-          <dd>Материал</dd>
-        </dl>
+        <div class="promo-image-container">
+          <ul>
+            <li class="promo-image-slide current-slide">
+              <img src="img/longstick-promo.png" width="384" height="486" alt="Восьмиметровая селфи-палка" class="promo-longstick-img">
+            </li>
+            <li class="promo-image-slide">
+              <img src="img/bracelet-promo.png" width="345" height="483" alt="Фитнес-браслет, который видит, что ты снова ешь :(" class="promo-bracelet-img">
+            </li>
+            <li class="promo-image-slide">
+              <img src="img/copter-promo.png" width="526" height="334" alt="Могучий  металлический квадрокоптер, стреляющий лазерным лучом" class="promo-copter-img">
+            </li>
+        </div>
+        <div class="promo-description-container">
+          <ul>
+            <li class="promo-description-slide current-slide">
+              <h3>
+                Делай селфи,<br>
+                как Бен Стиллер!
+              </h3>
+              <p>Самая длинная палка для селфи доступна в нашем магазине.<br>
+              Восемь (Восемь, Карл!) метров длиной и весом всего 5 килограмм.</p>
+              <div class="promo-show-more expanding-button">
+                <a href="">Подробнее</a>
+              </div>
+              <ul class="promo-features-list">
+                <li><h4>8,5 м</h4>
+                Длина палки</li>
+                <li><h4>5 кг</h4>
+                Вес палки</li>
+                <li><h4>Карбон</h4>
+                &thinsp;Материал</li>
+              </ul>
+            </li>
+            <li class="promo-description-slide">
+              <h3>
+                Худеем<br>
+                правильно!
+              </h3>
+              <p>Мотивирующие фитнес-браслеты помогут найти в себе силы<br>
+              не пропускать занятия и соблюдать диету.</p>
+              <div class="promo-show-more expanding-button">
+                <a href="">Подробнее</a>
+              </div>
+              <ul class="promo-features-list">
+                <li><h4>48 часов</h4>
+                Без подзарядки</li>
+              </ul>
+            </li>
+            <li class="promo-description-slide">
+              <h3>
+              Порхает как бабочка,<br>
+              жалит как пчела!
+              </h3>
+              <p>Этот обычный, на первый взгляд, квадрокоптер оснащен <br>
+              мощным лазером, замаскированным под стандартную камеру.</p>
+              <div class="promo-show-more expanding-button">
+                <a href="">Подробнее</a>
+              </div>
+              <ul class="promo-features-list">
+                <li><h4>800 м</h4>
+                Дальность полёта</li>
+                <li><h4>50 м</h4>
+                Радиус поражения</li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="promo-pagination-list">
+            <li>
+              <button type="button" aria-label="Товар №1" class="current-button"></button>
+            </li>
+            <li>
+              <button type="button" aria-label="Товар №2"></button>
+            </li>
+            <li>
+              <button type="button" aria-label="Товар №3"></button>
+            </li>
+          </ul> 
+        </div>
       </section>
       <section>
         <h2 class="visually-hidden">Категории товаров</h2>
@@ -185,5 +292,6 @@
       </ul>
       <a href="###HTMLACADEMY###">HTML Academy</a>
     </footer>
+    <script type="text/javascript" src="js/scripts.js"></script>
   </body>
 </html>
