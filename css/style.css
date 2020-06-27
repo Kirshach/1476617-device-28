@@ -42,7 +42,9 @@
     --bg-main-color: #ffffff;
     --bg-panels-main-color: #e5e5e5;
     --bg-selection-color: rgba(0,0,0,0.10);
+    --accent-ultralight-color: #fafedd;
     --accent-light-color: #f7e296;
+    --accent-transition-color: #f3d054;
     --accent-strong-color: #f0c52e;
 
     --content-main-color: #000000;
@@ -92,8 +94,6 @@ a {
     width: 1160px;
     margin-left: auto;
     margin-right: auto;
-
-    overflow: hidden;
 }
 
 .transparent-on-hover {
@@ -147,7 +147,7 @@ a {
     width: 100%;
 
     background-color: var(--bg-main-color);
-    transition: height 0.15s ease-out;
+    transition: height 0.1s ease-out;
 }
 
 .expanding-button::before {
@@ -188,7 +188,6 @@ a {
     padding-top: 28px;
 
     background-color: var(--accent-light-color);
-    overflow: visible;
 }
 
 .main-header a:focus {
@@ -608,9 +607,10 @@ a {
 
 .promo-image-slide {
     visibility: hidden;
-
     opacity: 0;
+
     transform: translateX(-70px);
+    transition: visibility 0s 0.2s, opacity 0s 0.2s;
 } 
 
 .promo-image-slide.current-slide {
@@ -619,16 +619,9 @@ a {
     opacity: 1;
     transform: translateX(0px);
 
-    transition: opacity 0.17s ease-out 0.6s, transform 0.17s ease-out 0.6s;
-} 
-
-.promo-image-slide.previous-slide {
-    visibility: visible;
-
-    opacity: 0;
-    transform: translateY(70px);
-
-    transition: opacity 0.17s ease-out, transform 0.17s ease-out;
+    transition: visibility 0s 0.2s, 
+                opacity 0.17s ease-out 0.3s,
+                transform 0.17s ease-out 0.3s;
 } 
 
 .promo-image-slide > img {
@@ -659,6 +652,8 @@ a {
 
     width: 610px;
     padding: 78px 50px 60px;
+
+    overflow-x: hidden;
 }
 
 .promo-description-slide {
@@ -667,14 +662,16 @@ a {
     width: 100%;
 
     visibility: hidden;
+    opacity: 0;
 
-    transition: visibility 0s 0.5s;
+    transition: visibility 0s 0.1s, opacity 0.5s 0s;
 }
 
 .promo-description-slide.current-slide {
     visibility: visible;
+    opacity: 1;
 
-    transition: visibility 0s;
+    transition:  opacity 0s 0.2s;
 }
 
 .promo-description-slide:nth-of-type(1)::before {
@@ -704,18 +701,11 @@ a {
     color: var(--bg-main-color);
 
     transform: translateX(250px);
+    transition: transform 0.35s ease 0.2s;
 }
 
 .promo-description-slide.current-slide::before {
     transform: translateX(0px);
-
-    transition: transform 0.35s ease 0.47s;
-}
-
-.promo-description-slide.previous-slide::before {
-    transform: translateY(120px);
-
-    transition: transform 0.3s ease 0s;
 }
 
 .promo-description-slide h3 {
@@ -723,7 +713,6 @@ a {
 
     margin-bottom: 26px;
 
-    opacity: 0;
     transform: translateX(70px);
 
     font-family: var(--heading-font-family), 'Arial Black', sand-serif;
@@ -731,45 +720,36 @@ a {
     font-size: 47px;
     line-height: 58px;
     z-index: 1;
+
+    transition: all 0.3s ease-out 0.4s;
 }
 
 .promo-description-slide.current-slide h3 {
-    opacity: 1;
     transform: translateX(0px);
 
-    transition: all 0.3s ease-out 0.7s;
-}
-
-.promo-description-slide.previous-slide > * {
-    opacity: 0;
-    transform: translateY(70px);
-
-    transition: opacity 0.17s ease-out 0s, transform 0.17s ease-out 0s;
+    transition: all 0.2s ease-out 0.35s;
 }
 
 .promo-description-slide p {
     min-height: 64px;
     margin-bottom: 27px;
 
-    opacity: 0;
+    line-height: 20px;
+
     transform: translateX(70px);
 
-    line-height: 20px;
+    transition: all 0.2s ease-out 0.4s;
 }
 
 .promo-description-slide.current-slide p {
-    opacity: 1;
     transform: translateX(0px);
 
-    transition: all 0.2s ease-out 0.8s;
+    transition: all 0.2s ease-out 0.45s;
 }
 
 .promo-show-more {
     width: 220px;
     margin-bottom: 51px;
-
-    opacity: 0;
-    transform: translateX(70px);
 
     font-family: var(--heading-font-family), 'Arial Black', sand-serif;
     font-weight: 800;
@@ -777,13 +757,16 @@ a {
 
     letter-spacing: 0.2em;
     text-transform: uppercase;
+
+    transform: translateX(70px);
+
+    transition: all 0.2s ease-out 0.4s;
 }
 
 .promo-description-slide.current-slide .promo-show-more {
-    opacity: 1;
     transform: translateX(0px);
 
-    transition: all 0.2s ease-out 0.9s;
+    transition: all 0.2s ease-out 0.55s;
 }
 
 .promo-features-list {
@@ -794,21 +777,21 @@ a {
 
     width: 100%;
 
-    opacity: 0;
-    transform: translateX(70px);
-
     font-family: var(--heading-font-family), 'Arial Black', sand-serif;
     font-size: 13px;
     font-weight: 300;
     line-height: 15px;
     letter-spacing: 0.1em;
+
+    transform: translateX(70px);
+
+    transition: all 0.17s ease-out 0.4s;
 }
 
 .promo-description-slide.current-slide .promo-features-list {
-    opacity: 1;
     transform: translateX(0px);
 
-    transition: all 0.17s ease-out 1s;
+    transition: all 0.17s ease-out 0.65s;
 }
 
 .promo-features-list > li {
@@ -834,6 +817,7 @@ a {
     max-height: 60px;
 
     position: absolute;
+    z-index: 2;
     top: 325px;
     right: 70px;
 
@@ -874,6 +858,111 @@ a {
     border-radius: 50%;
 }
 
+/*                                */
+/*      Категории продуктов       */
+/*                                */
+
+
+.product-categories {
+    padding-top: 40px; 
+    padding-bottom: 40px; 
+}
+
+
+.product-categories > ul {
+    display: grid;
+    grid-template-columns: repeat(6, 160px);
+    grid-gap: 40px;
+
+    list-style: none;
+
+    font-family: var(--heading-font-family), 'Arial Black', sand-serif;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: 0.05em;
+}
+
+.products-category-item {
+    display: flex;
+    flex-direction: column;
+
+    width: 160px;
+    height: min-content;
+}
+
+.products-category-item a:first-child {
+    order: -1;
+
+    position: relative;
+    display: block;
+
+    height: 160px;
+    width: 160px;
+    margin-bottom: 38px;
+
+    background-color: var(--accent-light-color);
+    overflow: hidden; 
+}
+
+.products-category-item > a:first-child::before {
+    content: "";
+    position: absolute;
+    top: 75px;
+    left: 75px;
+
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+
+    background-color: var(--accent-light-color);
+    transition: transform 0.1s ease 0.3s, background-color 0.2s ease-out;
+}
+
+.products-category-item:hover > a:first-child::before { 
+    transform: scale(22);
+    background-color: var(--accent-strong-color);
+
+    transition: transform 0.15s ease-out, background-color 0.12s ease-out;
+}
+
+.products-category-item a:first-child::after {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+}
+
+.products-category-vr a:first-child::after {
+    background: url(../img/popular-vr.svg) no-repeat 31px 52px;
+}
+
+.products-category-monopods a:first-child::after {
+    background: url(../img/popular-monopods.svg) no-repeat 37px 26px;
+}
+
+.products-category-actioncams a:first-child::after {
+    background: url(../img/popular-actioncams.svg) no-repeat 44px 36px;
+}
+
+.products-category-bracelets a:first-child::after {
+    background: url(../img/popular-bracelets.svg) no-repeat 27px 48px;
+}
+
+.products-category-watches a:first-child::after {
+    background: url(../img/popular-watches.svg) no-repeat 52px 31px;
+}
+
+.products-category-copters a:first-child::after {
+    background: url(../img/popular-copters.svg) no-repeat 14px 46px;
+}
+
+.products-category-bracelets {
+    letter-spacing: 0;
+}
 
 /*                                */
 /*                                */
@@ -889,4 +978,10 @@ a {
     13% {opacity:0;}
     20% {opacity:.5;}
     25% {opacity:1;}
+}
+
+@keyframes dissolve-down {
+    0% {opacity: 1; transform:translateY(0px)}
+    20% {opacity: 0; transform:translateY(50px)}
+    100% {opacity: 0; transform:translateY(50px)}
 }
