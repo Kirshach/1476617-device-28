@@ -14,8 +14,15 @@
 /// на текущем уровне (не)знания JS
 
 let mouseDown = false;
-let customFocusList = document.querySelectorAll('.main-header a:not(.header-logo), \
-																.main-footer a:not(.footer-logo), \
+let customFocusList = document.querySelectorAll('.main-header a,\
+																.main-footer a,\
+																.catalog-depth-nav a,\
+																.filter-range-slider,\
+																.filter-form label,\
+																.catalog-sorting-section a,\
+																.compare-item,\
+																.catalog-pagination-container a,\
+																.contact-us-map,\
 																.promo-pagination-list button');
 
 for (let i = 0; i < customFocusList.length; i++) {
@@ -62,12 +69,16 @@ let promoLength = promoDescriptionsList.length;
 if (promoLength !== 0) {
 
 	let promoCurrent = 0;
+	let nextSlide = 1;
 
 	if (promoDescriptionsList.length !== promoImagesList.length ||
 		 promoDescriptionsList.length !== promoButtonsList.length) { 
 		alert('Я сломался из-за того, что количество слайдов изображений, их описаний, и кнопок, им соответствующих, не равно ( ͡° ͜ʖ ͡°)') };
 
+	// Задаём функцию смены слайдов
 	function showPromoSlide(newCurrent) {
+
+		if (newCurrent == promoCurrent) {return};
 
 		// Отключаем кнопки на время анимации
 		for (let i = 0; i < promoLength; i++) {
@@ -99,27 +110,30 @@ if (promoLength !== 0) {
 			promoCurrent = newCurrent;
 		}, 650);
 
+		// setTimeout(function() {
+		// 	let nextSlide = (newCurrent < promoLength - 1) ? (newCurrent + 1) : 0;
+		// 	showPromoSlide(nextSlide)}, 2000)
 	};
 
+	// Добавляем интерактивность кнопкам смены слайдов
 	for (let i = 0; i < promoLength; i++) {
 		promoButtonsList[i].onclick = function(event) {
-			promoButtonsList[i].blur();
 			event.preventDefault();
+			promoButtonsList[i].blur();
 			showPromoSlide(i);
 		};
 
-		promoButtonsList[i].onkeyup = function(e){
-			if (e.keyCode == 32) { 
+		promoButtonsList[i].onkeyup = function(event) {
+			if (event.keyCode == 32) { 
 				setTimeout(function() {
 					if (i < promoLength - 1) {
-						promoButtonsList[i+1].focus();
+						promoButtonsList[i + 1].focus();
 					} else {
 						promoButtonsList[0].focus();
 					};
 				}, 720);
 			};
 		};
-
 	};
 
 };
@@ -133,7 +147,6 @@ let servicesLength = servicesButtonList.length;
 if (servicesLength !== 0) {
 
 	let servicesCurrent = 0;
-
 	if (servicesButtonList.length !== servicesInfoList.length) { 
 		alert('Добавил кпопку - добавь и слайд ( ͡° ͜ʖ ͡°)') };
 
@@ -142,12 +155,10 @@ if (servicesLength !== 0) {
 		servicesButtonList[servicesCurrent].disabled = false;
 		servicesButtonList[newCurrent].disabled = true;
 
-
 		servicesInfoList[servicesCurrent].style.animation = "dissolve 1s";
 		setTimeout(function() {
 			servicesInfoList[newCurrent].style.animation = "appear-from-left 1s";
 		}, 200);
-
 
 		// Устанавливаем высоту контейнера равной высоте абсолютно спозиционированного элемента
 
@@ -161,7 +172,6 @@ if (servicesLength !== 0) {
 		servicesButtonList[servicesCurrent].classList.remove('services-current-button');
 		servicesInfoList[newCurrent].classList.add('current-info-item');
 		servicesButtonList[newCurrent].classList.add('services-current-button');
-
 		servicesCurrent = newCurrent;
 
 	};
@@ -175,3 +185,122 @@ if (servicesLength !== 0) {
 
 };
 
+// Скрипты каталога
+
+let filterInputList = document.querySelectorAll('.filter-form input');
+let filterLabelList = document.querySelectorAll('.filter-form label');
+let labelsLength = filterLabelList.length;
+
+	for (let i = 0; i < labelsLength; i++) {
+		filterLabelList[i].onkeyup = function(event) {
+			if (event.keyCode == 32 || event.keyCode == 13 ) {
+				event.preventDefault();
+				if (filterInputList[i].checked && filterInputList[i].type == 'checkbox') {
+					filterInputList[i].checked = false;
+				} else {
+					filterInputList[i].checked = true;
+				};
+			};
+		};
+	};
+
+//////////////////////////////////
+///                            ///
+///          Поп-апы           ///
+///                            ///
+//////////////////////////////////
+
+///        Поп-ап карты     ///
+
+let mapPopup = document.querySelector('.map-popup');
+let mapIframe = document.querySelector('.map-popup iframe');
+if (mapPopup) {
+
+	let mapOpenButton = document.querySelector('.contact-us-map');
+	let mapCloseButton = document.querySelector('.close-map-popup');
+
+	mapOpenButton.onclick = function(event) {
+		event.preventDefault();
+		mapPopup.classList.add('is-displayed');
+		mapPopup.focus();
+	};
+
+	mapCloseButton.onclick = function(event) {
+		event.preventDefault();
+		mapPopup.classList.remove('is-displayed');
+		mapOpenButton.focus();
+	};
+
+	window.addEventListener('keydown', function (event) {
+		if (event.keyCode === 27) {
+			if (mapPopup.classList.contains('is-displayed')) {
+				event.preventDefault();
+				mapPopup.classList.remove('is-displayed');
+			};
+		};
+	});
+};
+
+///  Поп-ап "Напишите нам"  ///
+
+let writeUsPopup = document.querySelector('.write-us-popup');
+let writeUsForm = document.querySelector('.write-us-form');
+if (writeUsPopup) {
+
+	let writeUsOpenButton = document.querySelector('.write-us-button');
+	let writeUsCloseButton = document.querySelector('.close-write-us-popup');
+	let writeUsName = document.getElementById('write-us-name');
+	let writeUsEmail = document.getElementById('write-us-email');
+	let writeUsMessage = document.getElementById('write-us-message');
+	let hasStorageSupport = true;
+	let storageName = '';
+	let storageEmail = '';
+
+	try {
+		storageName = localStorage.getItem('name');
+		storageEmail = localStorage.getItem('email');
+	} catch (err) {
+		hasStorageSupport = false;
+	};
+
+	writeUsOpenButton.onclick = function(event) {
+		event.preventDefault();
+		writeUsPopup.classList.add('is-displayed');
+		setTimeout(function() {
+			if (storageName) {
+				writeUsName.value = storageName;
+				writeUsEmail.value = storageEmail;
+				writeUsMessage.focus();
+			} else {writeUsName.focus()};
+		}, 100);
+	};
+
+	writeUsForm.addEventListener('submit', function (event) {
+		if (!writeUsName.value || !writeUsEmail.value || !writeUsMessage.value) {
+			event.preventDefault();
+			writeUsPopup.classList.remove('error-animation');
+			writeUsPopup.offsetWidth;
+			writeUsPopup.classList.add('error-animation');
+		} else {
+			if (hasStorageSupport) {
+				localStorage.setItem('name', writeUsName.value);
+				localStorage.setItem('email', writeUsEmail.value);
+				writeUsPopup.classList.remove('error-animation');
+			};
+ 		};
+	});
+
+	writeUsCloseButton.onclick = function(event) {
+		event.preventDefault();
+		writeUsPopup.classList.remove('is-displayed');
+	};
+
+	window.addEventListener('keydown', function (event) {
+		if (event.keyCode === 27) {
+			if (writeUsPopup.classList.contains('is-displayed')) {
+				event.preventDefault();
+				writeUsPopup.classList.remove('is-displayed');
+			};
+		};
+	});
+};
