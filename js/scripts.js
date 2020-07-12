@@ -7,6 +7,15 @@
 ///                                                                         ///
 ///////////////////////////////////////////////////////////////////////////////
 
+// Выключаем ссылки-заглушки
+
+let linkList = document.querySelectorAll('a[href=""]');
+for (let i = 0; i < linkList.length; i++) {
+	linkList[i].onclick = function(event) {
+		event.preventDefault();
+	}
+}
+
 /// ALERT!
 /// Следующий кусок кода уродлив
 /// Я ещё не знаю js, но очень хотел стилизовать focus по клавиатуре, 
