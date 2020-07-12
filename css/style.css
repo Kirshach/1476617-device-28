@@ -1767,8 +1767,8 @@ a {
 /*         Поп-ап карты           */
 
 .map-popup {
-    top: calc(50vh - 280px);
-    left: calc(50vw - 480px);
+    top: calc(50% - 280px);
+    left: calc(50% - 480px);
 
     width: 960px;
     height: 559px;
@@ -1794,8 +1794,8 @@ a {
     visibility: hidden;
 
     position: fixed;
-    top: calc(50vh - 275px);
-    left: calc(50vw - 480px);
+    top: calc(50% - 275px);
+    left: calc(50% - 480px);
     z-index: 3;
 }
 
