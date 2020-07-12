@@ -88,6 +88,8 @@ body {
     display: flex;
     flex-direction: column;
 
+
+    min-width: 1200px;
     min-height: 100vh;
     padding-top: 40px;
 
@@ -98,6 +100,10 @@ body {
     line-height: 28px;
 
     background-color: var(--bg-main-color);
+}
+
+main {
+    /*flex-grow: 1;*/
 }
 
 a {
@@ -707,13 +713,14 @@ a {
 
 .main-footer {
     width: 100%;
+    padding: 0px 20px;
 
     color: var(--bg-main-color);
     background-color: var(--bg-footer-color);
 
     font-size: 15px;
     line-height: 20px;
-    overflow-x: hidden;
+
 }
 
 .main-footer .container {
@@ -724,7 +731,7 @@ a {
     margin-left: auto;
     margin-right: auto;
 
-    background-color: inherit;
+    background-color: var(--bg-footer-color);
 }
 
 .main-footer a {
@@ -1905,6 +1912,7 @@ a {
 /*                                */
 
 .catalog-header {
+    width: 1160px;
     padding: 13px 55px 38px;
 }
 
@@ -1970,6 +1978,7 @@ a {
 .catalog-main-container {
     display: flex;
     justify-content: center;
+    min-width: 1200px;
 
     overflow-x: hidden;
     background-color: var(--bg-panels-main-color);
@@ -1980,11 +1989,13 @@ a {
     flex-grow: 1;
 
     display: flex;
-    flex-direction: column;
+    flex-direction: column
 }
 
 .catalog-left-section {
     align-items: flex-end;
+
+    min-width: 345px;
 }
 
 .catalog-left-section h2,
@@ -1997,22 +2008,22 @@ a {
     text-transform: uppercase;
 }
 
-.catalog-left-section > h2 {
-    min-width: 331px;
+.catalog-left-section h2 {
     width: 100%;
     height: 70px;
     padding-top: 24px;
     padding-right: 192px;
+    padding-left: 20px;
 
     text-align: right;
     background-color: var(--bg-panels-secondary-color);
 }
 
 .filter-form {
-    width: 331px;
+    width: 350px;
     padding-top: 86px;
     padding-bottom: 25px;
-    padding-left: 43px;
+    padding-left: 61px;
 }
 
 .catalog-main-container fieldset {
@@ -2274,14 +2285,15 @@ a {
     align-items: flex-top;
 
     min-height: 70px;
-    width: 835px;
+    width: 850px;
+    padding-left: 72px;
+    padding-right: 20px;
 }
 
-.catalog-right-section h2 {
+.catalog-sorting-section h2 {
     height: 100%;
     padding-top: 25px;
     padding-right: 63px;
-    padding-left: 72px;
 }
 
 .catalog-sorting-section ul {
@@ -2306,7 +2318,7 @@ a {
     flex-shrink: 0;
     position: relative;
     top: 3px;
-    left: 0px;
+    left: 4px;
 
     width: 58px;
 }
@@ -2381,6 +2393,7 @@ a {
     grid-row-gap: 43px;
 
     margin-bottom: 35px;
+    padding-right: 20px;
 
     list-style: none;
 }
